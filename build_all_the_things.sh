@@ -12,10 +12,10 @@ cyan="\033[38;5;87m"
 reset="\033[0m"
 THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 masterApiEndpoint="https://api.github.com"
-repo="https://github.com/btc1/bitcoin"
+repo="https://github.com/GarlicoinOrg/garlicoin"
 
 get_latest_tag () {
-  local url="curl ${masterApiEndpoint}/repos/btc1/bitcoin/tags"
+  local url="curl ${masterApiEndpoint}/repos/GarlicoinOrg/garlicoin/tags"
   response=(`${url} 2>/dev/null | sed -n 's/"name": "\(.*\)",$/\1/p'`)
   echo ${response[0]}
 }
@@ -57,5 +57,5 @@ for platform in "${platforms[@]}"; do
   builder \
   "${branch_or_tag}" \
   "${repo}" \
-  "../bitcoin/contrib/gitian-descriptors/gitian-${platform}.yml"
+  "../garlicoin/contrib/gitian-descriptors/gitian-${platform}.yml"
 done

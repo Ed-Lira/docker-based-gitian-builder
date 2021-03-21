@@ -24,9 +24,9 @@ chown root.root /etc/sudoers.d/ubuntu && \
 chmod 0400 /etc/sudoers.d/ubuntu && \
 chown -R ubuntu.ubuntu /home/ubuntu
 USER ubuntu
-RUN printf "[[ -d /shared/bitcoin ]] || \
-git clone -b \$1 --depth 1 \$2 /shared/bitcoin && \
+RUN printf "[[ -d /shared/garlicoin ]] || \
+git clone -b \$1 --depth 1 \$2 /shared/garlicoin && \
 cd /shared/gitian-builder; \
-./bin/gbuild --skip-image --commit bitcoin=\$1 --url bitcoin=\$2 \$3" > /home/ubuntu/runit.sh
-CMD ["v1.14.1rc2","https://github.com/btc1/bitcoin.git","../bitcoin/contrib/gitian-descriptors/gitian-linux.yml"]
+./bin/gbuild --skip-image --commit garlicoin=\$1 --url garlicoin=\$2 \$3" > /home/ubuntu/runit.sh
+CMD ["v1.14.1rc2","https://github.com/GarlicoinOrg/garlicoin.git","../garlicoin/contrib/gitian-descriptors/gitian-linux.yml"]
 ENTRYPOINT ["bash", "/home/ubuntu/runit.sh"]
